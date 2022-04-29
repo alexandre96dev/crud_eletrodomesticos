@@ -10,9 +10,9 @@ class EletrodomesticosController extends Controller
     public function index()
     {
         $eletrodomesticos = Eletrodomestico::select(
-            "eletrodomesticos.id", 
+            "eletrodomesticos.id",
             "eletrodomesticos.nome",
-            "eletrodomesticos.descricao", 
+            "eletrodomesticos.descricao",
             "eletrodomesticos.tensao",
             "marcas.nome AS marca"
         )
@@ -20,23 +20,35 @@ class EletrodomesticosController extends Controller
         ->get();
         return $eletrodomesticos;
     }
-    public function listarPorId(Request $request)
+    public function listarPorId($id)
     {
         $eletrodomesticos = Eletrodomestico::select(
-            "eletrodomesticos.id", 
+            "eletrodomesticos.id",
             "eletrodomesticos.nome",
-            "eletrodomesticos.descricao", 
+            "eletrodomesticos.descricao",
             "eletrodomesticos.tensao",
             "marcas.nome AS marca"
         )
         ->join("marcas", "marcas.id", "=", "eletrodomesticos.marca_id")
-        ->where("eletrodomesticos.id", '=', $request->id)
+        ->where("eletrodomesticos.id", '=', $id)
         ->get();
         return $eletrodomesticos;
     }
-    public function editar(Request $request)
+    public function editar(Request $request, $id)
     {
-        $eletrodomestico = Eletrodomestico::find($request->id);
+        $eletrodomestico = Eletrodomestico::find($id);
+
+        $eletrodomestico->nome = $request->nome;
+        $eletrodomestico->descricao = $request->descricao;
+        $eletrodomestico->tensao = $request->tensao;
+        $eletrodomestico->marca_id = $request->id;
+
+        $eletrodomestico->save();
+        return $eletrodomestico;
+    }
+    public function inserir(Request $request)
+    {
+        $eletrodomestico = new Eletrodomestico;
 
         $eletrodomestico->nome = $request->nome;
         $eletrodomestico->descricao = $request->descricao;
@@ -47,10 +59,9 @@ class EletrodomesticosController extends Controller
         return $eletrodomestico;
     }
 
-    public function deletar(Request $request)
+    public function deletar($id)
     {
-        $eletrodomestico = Eletrodomestico::find($request->id);
-
+        $eletrodomestico = Eletrodomestico::findorfail($id);
         $eletrodomestico->delete();
     }
 }

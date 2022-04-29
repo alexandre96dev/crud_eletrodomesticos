@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Marca;
 class MarcasController extends Controller
 {
     public function index()
     {
-        $marcas = Marcas::all();
+        $marcas = Marca::all();
         return $marcas;
     }
     public function listarPorId(Request $request)
     {
-        $marca = Marcas::find($request->id);
+        $marca = Marca::find($request->id);
         return $marca;
     }
     public function editar(Request $request)
     {
-        $marca = Marcas::find($request->id);
+        $marca = Marca::find($request->id);
 
         $marca->nome = $request->nome;
         $marca->descricao = $request->descricao;
@@ -31,7 +31,7 @@ class MarcasController extends Controller
 
     public function deletar(Request $request)
     {
-        $marca = Marcas::find($request->id);
+        $marca = Marca::find($request->id);
 
         $marca->delete();
     }

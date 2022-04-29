@@ -1,7 +1,8 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand to="/about">NavBar</b-navbar-brand>
+      <b-navbar-brand to="/">Eletrodomesticos</b-navbar-brand>
+      <b-navbar-brand to="/about">Marcas</b-navbar-brand>
     </b-navbar>
   </div>
 </template>
