@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('eletrodomestico', function (Blueprint $table) {
+        Schema::create('eletrodomesticos', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
             $table->text('descricao');
+            $table->string('tensao');
+            $table->unsignedBigInteger('marca_id');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('eletrodomestico');
+        Schema::dropIfExists('eletrodomesticos');
     }
 };

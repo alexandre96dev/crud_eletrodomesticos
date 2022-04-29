@@ -4,17 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Eletrodomestico;
-
+use App\Models\Marca;
 class EletrodomesticosController extends Controller
 {
     public function index()
     {
-        $eletrodomesticos = Eletrodomestico::all();
+        $eletrodomesticos = Eletrodomestico::select(
+            "eletrodomesticos.id", 
+            "eletrodomesticos.nome",
+            "eletrodomesticos.descricao", 
+            "eletrodomesticos.tensao",
+            "marcas.nome AS marca"
+        )
+        ->join("marcas", "marcas.id", "=", "eletrodomesticos.marca_id")
+        ->get();
         return $eletrodomesticos;
     }
     public function listarPorId(Request $request)
     {
-        $eletrodomesticos = Eletrodomestico::find($request->id);
+        $eletrodomesticos = Eletrodomestico::select(
+            "eletrodomesticos.id", 
+            "eletrodomesticos.nome",
+            "eletrodomesticos.descricao", 
+            "eletrodomesticos.tensao",
+            "marcas.nome AS marca"
+        )
+        ->join("marcas", "marcas.id", "=", "eletrodomesticos.marca_id")
+        ->where("eletrodomesticos.id", '=', $request->id)
+        ->get();
         return $eletrodomesticos;
     }
     public function editar(Request $request)

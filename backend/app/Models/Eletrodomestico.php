@@ -8,7 +8,7 @@ use App\Models\Marca;
 class Eletrodomestico extends Model
 {
     use HasFactory;
-    public $table = 'eletrodomestico';
+    public $table = 'eletrodomesticos';
     protected $fillable = [
         'nome','descricao', 'tensao'
     ];

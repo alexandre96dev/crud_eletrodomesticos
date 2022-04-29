@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\EletrodomesticosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EletrodomesticosController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -13,4 +14,5 @@ use App\Http\Controllers\EletrodomesticosController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/eletrodomesticos', [EletrodomesticosController::class, 'index']);
+
+Route::get("/eletrodomestico/{id}", [EletrodomesticosController::class, 'listarPorId']);

@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('eletrodomestico', function (Blueprint $table) {
-            $table->string('tensao')->after('descricao');
-            $table->unsignedBigInteger('marca_id')->after('tensao')->nullable();
+        Schema::table('eletrodomesticos', function (Blueprint $table) {
+            $table->foreign('marca_id')->references('id')->on('marcas');
         });
     }
 
@@ -26,9 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('eletrodomestico', function (Blueprint $table) {
-            $table->dropColumn('tensao');
-            $table->dropColumn('marca_id');
+        Schema::table('eletrodomesticos', function (Blueprint $table) {
+            //
         });
     }
 };

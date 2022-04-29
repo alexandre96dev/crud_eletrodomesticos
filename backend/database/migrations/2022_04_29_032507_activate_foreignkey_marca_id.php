@@ -13,9 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('eletrodomestico', function (Blueprint $table) {
-            $table->foreign('marca_id')->references('id')->on('marcas');
-        });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -25,8 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('eletrodomestico', function (Blueprint $table) {
-            $table->dropColumn('marca_id');
-        });
+        Schema::disableForeignKeyConstraints();
     }
 };
