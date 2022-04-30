@@ -19,8 +19,8 @@
       <b-form-input id="desc-eletro" v-model="form.descricao"></b-form-input>
       <label for="tensao-eletro">tensao</label>
       <b-form-input id="tensao-eletro" v-model="form.tensao"></b-form-input>
-      <b-form-select v-model="marcaselected" v-for="item in marcas" :key="item.id" class="mb-3">
-        <b-form-select-option :value="item.id">{{ item.nome }}</b-form-select-option>
+      <b-form-select v-model="marcaselected"  class="mb-3">
+        <b-form-select-option v-for="item in marcas" :key="item.id" :value="item.id">{{ item.nome }}</b-form-select-option>
       </b-form-select>
       <div>
         <b-button variant="success" block @click="cadastrarEletro">Ok</b-button>
@@ -35,8 +35,8 @@
       <b-form-input id="desc-edit-eletro" v-model="formEdit.descricao"></b-form-input>
       <label for="tensao-edit-eletro">tensao</label>
       <b-form-input id="tensao-edit-eletro" v-model="formEdit.tensao"></b-form-input>
-      <b-form-select v-model="marcaseditelected" v-for="item in marcas" :key="item.id" class="mb-3">
-        <b-form-select-option :value="item.id">{{ item.nome }}</b-form-select-option>
+      <b-form-select v-model="marcaselected"  class="mb-3">
+        <b-form-select-option v-for="item in marcas" :key="item.id" :value="item.id">{{ item.nome }}</b-form-select-option>
       </b-form-select>
       <div>
         <b-button variant="success" block @click="atualizarEletro">Ok</b-button>
@@ -118,12 +118,18 @@ export default {
       this.$bvModal.hide('cadastro-eletro')
       EletrodomesticosService.cadastroEletrodomesticos(this.form.nome, this.form.descricao, this.form.tensao, this.marcaselected)
       this.listarEletrodomesticos()
-      console.log(this.$refs.table)
+      setTimeout(function(){
+        document.location.reload()
+      }, 1500)
+     
     },
     atualizarEletro(){
       EletrodomesticosService.atualizarEletrodomestico(this.formEdit.id, this.formEdit.nome, this.formEdit.descricao, this.formEdit.tensao, this.marcaseditelected)
       this.listarEletrodomesticos()
-      this.$router.push('/')
+      this.$bvModal.hide('edit-eletro')
+      setTimeout(function(){
+        document.location.reload()
+      }, 1500)
     },
     deletarEletro(id){
       EletrodomesticosService.deletarEletrodomesticos(id)

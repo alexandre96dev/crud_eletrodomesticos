@@ -11,27 +11,36 @@ class MarcasController extends Controller
         $marcas = Marca::all();
         return $marcas;
     }
-    public function listarPorId(Request $request)
+    public function listarPorId($id)
     {
-        $marca = Marca::find($request->id);
+        $marca = Marca::select(
+            "marcas.id",
+            "marcas.nome"
+        )
+        ->where("marcas.id", '=', $id)
+        ->get();
         return $marca;
     }
-    public function editar(Request $request)
+    public function editar(Request $request, $id)
     {
-        $marca = Marca::find($request->id);
+        $marca = Marca::find($id);
 
         $marca->nome = $request->nome;
-        $marca->descricao = $request->descricao;
-        $marca->tensao = $request->tensao;
-        $marca->marca_id = $request->id;
 
         $marca->save();
         return $marca;
     }
-
-    public function deletar(Request $request)
+    public function inserir(Request $request)
     {
-        $marca = Marca::find($request->id);
+        $marca = new Marca;
+
+        $marca->nome = $request->nome;
+        $marca->save();
+        return $marca;
+    }
+    public function deletar($id)
+    {
+        $marca = Marca::findorfail($id);
 
         $marca->delete();
     }

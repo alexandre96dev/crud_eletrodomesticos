@@ -17,8 +17,13 @@ use App\Http\Controllers\MarcasController;
 */
 Route::get("/eletrodomesticos", [EletrodomesticosController::class, 'index']);
 Route::get("/eletrodomesticos/{id}", [EletrodomesticosController::class, 'listarPorId']);
-Route::get("/marcas/", [MarcasController::class, 'index']);
-Route::get("/marcas/{id}", [MarcasController::class, 'listarPorId']);
 Route::post('/eletrodomesticos', [EletrodomesticosController::class, 'inserir']);
 Route::get('/eletrodomesticos/deletar/{id}', [EletrodomesticosController::class, 'deletar']);
 Route::put("/eletrodomesticos/{id}", [EletrodomesticosController::class, 'editar']);
+
+
+Route::get("/marcas", [MarcasController::class, 'index']);
+Route::get("/marcas/{id}", [MarcasController::class, 'listarPorId']);
+Route::post("/marcas", [MarcasController::class, 'inserir']);
+Route::put("/marcas/{id}", [MarcasController::class, 'editar']);
+Route::get('/marcas/deletar/{id}', [MarcasController::class, 'deletar']);
