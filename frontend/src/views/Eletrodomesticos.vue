@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     
-    <HelloWorld/>
+    <Layout/>
     <b-button variant="success" v-b-modal.cadastro-eletro @click="listarMarcas">Adicionar</b-button>
     <b-button @click="listarEletrodomesticos" id="reload" style="visibility:hidden;">Reload</b-button>
        
@@ -48,14 +48,14 @@
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Layout from '@/components/Layout.vue'
 import EletrodomesticosService from '@/services/eletrodomesticos/eletrodomesticos'
 import MarcasService from '@/services/marcas/marcas'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    Layout
   },
   data() {
       return {

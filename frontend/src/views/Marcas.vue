@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-      <HelloWorld></HelloWorld>
+      <Layout></Layout>
       <b-button variant="success" v-b-modal.cadastro-marca>Adicionar</b-button>
       <!-- <b-button variant="success" v-b-modal.cadastro-eletro>Adicionar</b-button> -->
       <b-table :fields="fields" :items="users" ref="table">
@@ -30,13 +30,13 @@
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
+import Layout from '@/components/Layout.vue'
 import MarcasService from '@/services/marcas/marcas'
 
 export default {
-  name: 'About',
+  name: 'Marcas',
   components: {
-    HelloWorld
+    Layout
   },
   data() {
       return {
