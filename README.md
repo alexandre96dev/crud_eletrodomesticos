@@ -15,5 +15,5 @@ navegue até a pasta backend e use esse comando: composer install
 
 ### Comando para rodar o backend
 ```
-composer install
+php artisan serve
 ```
